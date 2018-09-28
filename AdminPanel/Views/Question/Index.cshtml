@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BusinessLogicLayer.ViewModels.QuestionVM>
+@*@model IEnumerable<AdminPanel.ViewModels.AdminViewModels.QuestionViewModels.IndexQuestionVM>*@
+@using BusinessLogicLayer.Services.AdminServices
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <h3>Question List</h3>
+        <hr />
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.questionID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.categoryID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.questionTypeID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.points)
+                </th>
+                <th>
+
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+
+
+            <tr>
+                <td>@item.questionID</td>
+                <td>@item.value</td>
+                <td>@item.categoryID</td>
+                <td>@item.questionTypeID</td>
+                <td>@item.points</td>
+
+                <td>
+                    <input type="button" class=" btn btn-outline-dark" value="Details" onclick="location.href='@Url.Action("DetailsQuestion", "Question", new { id = item.questionID })'" />
+                    <input type="button" class=" btn btn-outline-secondary" value="Edit" onclick="location.href='@Url.Action("EditQuestion", "Question", new { id = item.questionID })'" />
+                    <input type="button" class=" btn btn-outline-danger" value="Delete" onclick="location.href='@Url.Action("DeleteQuestion", "Question", new { id = item.questionID })'" />
+                </td>
+            </tr>
+
+
+            }
+        </table>
+
+    </div>
+
+    <input type="button" class=" btn btn-primary" value="Create new" onclick="location.href='@Url.Action("CreateQuestion", "Question")'" />
+
+
+
+</body>
+</html>

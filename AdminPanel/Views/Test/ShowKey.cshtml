@@ -1,0 +1,18 @@
+﻿@model AdminPanel.ViewModels.AdminViewModels.TestViewModels.ShowKeyVM
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Test has been created successfully</h4>
+        <hr />
+        <h5>Test key: @Html.DisplayFor(model => Model.testKey)</h5>
+            
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Admin")
+</div>

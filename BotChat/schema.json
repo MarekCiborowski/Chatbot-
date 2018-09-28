@@ -1,0 +1,53 @@
+﻿{
+  "type": "object",
+  "required": [ "1", "PlaceNam","Confirmation" ],
+  "Templates": {
+    "NotUnderstood": {
+      "Patterns": [ "I do not understand \"{0}\".", "Try again, I don't get \"{0}\"." ]
+    }
+  },
+  "properties": {
+    "1": {
+      "Prompt": {
+        "Patterns": [ "TO JEST DZIAŁAJĄCY BOT WCZYTANY Z FORMULARZA {||}" ]
+      },
+      "Describe": "Name of the place",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ChipotleSouthwest",
+          "HoneyMustard",
+          "LightMayonnaise",
+          "RegularMayonnaise",
+          "Mustard",
+          "Oil",
+          "Pepper",
+          "Ranch",
+          "SweetOnion",
+          "Vinegar"
+        ]
+      }
+    },
+    "PlaceNam": {
+      "Prompt": {
+        "Patterns": [ "TO JEST DZIAŁAJĄCY BOT WCZYTANY Z FORMULARZA {||}" ]
+      },
+      "Describe": "Name of the place",
+      "type": "string",
+      "enum": [
+        "super",
+        "świetnie",
+        "ekstra"
+      ]
+    },
+    "Confirmation": {
+      "Prompt": {
+        "Patterns": [ "NAPISZ COŚ JESZCZE" ]
+      },
+      "Describe": "Place to find the current date time",
+      "type": [ "string" ]
+    }
+  }
+  
+}

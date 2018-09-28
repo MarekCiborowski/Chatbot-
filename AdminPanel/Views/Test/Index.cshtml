@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BusinessLogicLayer.ViewModels.TestVM>
+
+@{
+    ViewBag.Title = "Test Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test Index</h2>
+
+<table class="table">
+       
+    <tr>
+        <th scope="col">TEST ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Is test completed?</th>
+        <th scope="col">Percentage Score</th>
+        <th scope="col">Completion Time</th>
+        <th scope="col">Completion Date</th>
+
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @item.testID
+        </td>
+
+        <td>
+            @item.username
+        </td>
+
+        <td>
+            @item.isCompleted
+        </td>
+
+        <td>
+            @item.percentageScore
+        </td>
+
+        <td>
+            @item.completionTime
+        </td>
+
+        <td>
+            @item.completionDate
+        </td>
+
+    </tr>
+    }
+
+
+</table>
+
+

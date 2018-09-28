@@ -1,0 +1,75 @@
+﻿@model AdminPanel.ViewModels.AdminViewModels.TestViewModels.DeleteTestVM
+
+<div>
+    <h4>Test deletion menu</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <th>
+                Test ID
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Template name
+            </th>
+            <th>
+                Is completed?
+            </th>
+            <th>
+                Expiration date
+            </th>
+            <th>
+                Is to be deleted?
+            </th>
+        </tr>
+
+        @for(int i=0;i<Model.testList.Count();i++)
+        {
+            <tr>      
+                <td>
+                    @Html.HiddenFor(modelItem => Model.testList[i].testID)
+                    @Html.DisplayFor(modelItem => Model.testList[i].testID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.testList[i].userName)
+                    @Html.DisplayFor(modelItem => Model.testList[i].userName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.testList[i].templateName)
+                    @Html.DisplayFor(modelItem => Model.testList[i].templateName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.testList[i].isCompleted)
+                    @Html.DisplayFor(modelItem => Model.testList[i].isCompleted)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.testList[i].expirationDate)
+                    @Html.DisplayFor(modelItem => Model.testList[i].expirationDate)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem => Model.testList[i].isChecked)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </div>
+
+    }
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

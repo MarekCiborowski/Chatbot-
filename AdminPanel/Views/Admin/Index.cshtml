@@ -1,0 +1,83 @@
+﻿@model AdminPanel.TestUsers.TestUsers
+
+@*<div class="container" style="text-align: right">
+    Użytkownik: @Model.userName | @Html.ActionLink("Wyloguj", "Logout", "Authentication")
+</div>
+<div class="jumbotron">
+    <h1>INDEXOWNIA ADMINA</h1>
+    <p class="lead">Hello man</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+
+<div class="row" style="margin:10px">
+    <div class="col-md-4">
+        <h2>Questions</h2>
+        <p>
+            Browse, add and edit questions. <br /> Add and delete answers.
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="Questions" onclick="location.href='@Url.Action("Index", "Question" )'" />
+    </div>
+    <div class="col-md-4">
+        <h2>Tests Schemes</h2>
+        <p>
+            Tu będą schematy testów do wyświetlenia po kliknięciu
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="tu nic nie ma :(" onclick="location.href='@Url.Action("action", "controller" )'" />
+    </div>
+    <div class="col-md-4">
+        <h2>Tests</h2>
+        <p>
+            Tu będą testy do wyświetlenia po kliknięciu
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="Tests" onclick="location.href='@Url.Action("Index", "Test" )'" />
+    </div>
+</div>
+
+<div class="row" style="margin:10px">
+    <div class="col-md-4">
+        <h2>Create test template</h2>
+        <p>
+            Here you can make set of questions for tests
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="Create test schemes" onclick="location.href='@Url.Action("CreateTestScheme", "TestScheme" )'" />
+
+    </div>
+
+
+    <div class="col-md-4">
+        <h2>Create new <br /> tests</h2>
+        <p>
+            Here you can create new test using existing schemes
+        </p>
+
+        <input type="button" class=" btn btn-outline-dark" value="Create tests" onclick="location.href='@Url.Action("CreateTest", "Test" )'" />
+
+    </div>
+    <div class="col-md-4">
+        <h2>Delete test schemes</h2>
+        <p>
+            Here you can delete any existing templates
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="Delete test templates" onclick="location.href='@Url.Action("DeleteTestScheme", "TestScheme" )'" />
+
+    </div>
+</div>
+
+<div class="row" style="margin:10px">
+    <div class="col-md-4">
+        <h2>Delete tests</h2>
+        <p>
+            Here you can delete any existing tests
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="Delete Tests" onclick="location.href='@Url.Action("DeleteTest", "Test" )'" />
+
+    </div>
+
+    <div class="col-md-4">
+        <h2>Finished Tests</h2>
+        <p>
+            Browse and evaluate finished tests.
+        </p>
+        <input type="button" class=" btn btn-outline-dark" value="Finished Tests" onclick="location.href='@Url.Action("Index", "FinishedTest" )'" />
+    </div>
+</div>

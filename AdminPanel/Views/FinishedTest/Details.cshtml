@@ -1,0 +1,252 @@
+﻿@model AdminPanel.ViewModels.AdminViewModels.FinishedTestViewModels.FinishedTestDetailsVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <h4>Finished Test Details</h4>
+
+        <table class="table">
+            <tr>
+                <th scope="col">Question</th>
+                <th scope="col">Given Answers</th>
+                <th scope="col">Is given answer correct?</th>
+                <th scope="col">points/max points</th>
+            </tr>
+
+
+            @foreach (var item in Model.questionsAndGivenAnswersVM)
+            {
+                <tr>
+                    <td style="max-width:300px;word-wrap:break-word;">@item.questionVM.value </td>
+
+                    <td style="max-width:300px;word-wrap:break-word;">
+                        @foreach (var givenAnswer in item.givenAnswerVM)
+                        {
+
+                            @givenAnswer.answer
+                            <br />
+                        }
+                    </td>
+
+                    <td>
+                        @foreach (var givenAnswer in item.givenAnswerVM)
+                        {
+                            if (item.questionVM.questionTypeID == 1)
+                            {
+                                <div>
+
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                                        switch (item.questionVM.points)
+                                        {
+                                            case 1:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList1max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 2:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList2max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 3:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList3max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 4:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList4max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 5:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList5max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 6:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList6max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 7:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList7max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 8:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList8max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 9:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList9max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            case 10:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList10max, new { @class = "form-control" })</div>
+                                                break;
+
+                                            default:
+                                                <div style="width:100px;">@Html.DropDownList("points", (IEnumerable<SelectListItem>)ViewBag.pointsList1max, new { @class = "form-control" })</div>
+                                                break;
+                                        }
+
+                                        @Html.Hidden("givenAnswerID", givenAnswer.givenAnswerID)
+                                        @Html.Hidden("testID_", Model.testVM.testID)
+
+                                        <input type="submit" class=" btn btn-outline-dark" value="Set score" style="margin-top:5px;width:100px" />
+
+                                    }
+
+
+
+                                </div>
+
+
+
+                            }
+                            else
+                            {
+                                @givenAnswer.isCorrect
+                                <br />
+                            }
+
+                        }
+                    </td>
+
+
+                    <td>
+                        @foreach (var givenAnswer in item.givenAnswerVM)
+                        {
+                            if (item.questionVM.questionTypeID == 2)
+                            {
+                                if (givenAnswer.isCorrect)
+                                {
+                                    <div>
+                                        @item.questionVM.points/@item.questionVM.points
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        0/@item.questionVM.points
+                                    </div>
+                                }
+
+                            }
+                            else if (item.questionVM.questionTypeID == 3)
+                            {
+
+                            }
+                            else
+                            {
+                                <div>
+                                    @givenAnswer.points/@item.questionVM.points
+                                </div>
+                            }
+
+                        }
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+
+        <button data-toggle="collapse" type="button" class="btn btn-primary" data-target="#testInfo">
+            Test Info
+        </button>
+
+
+        <div id="testInfo" class="collapse">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.username)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.username)
+                        </h3>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.percentageScore)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.percentageScore)
+                        </h3>
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.testID)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.testID)
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.completionTime)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.completionTime)
+                        </h3>
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.testTemplateID)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.testTemplateID)
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.completionDate)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.completionDate)
+                        </h3>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.expirationDate)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.expirationDate)
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.timeLimit)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.timeLimit)
+                        </h3>
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayNameFor(model => model.testVM.testKey)
+                        <h3>
+                            @Html.DisplayFor(model => model.testVM.testKey)
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</body>
+</html>

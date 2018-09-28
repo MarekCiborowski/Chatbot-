@@ -1,0 +1,15 @@
+{
+    "name": "BotChat",
+    "description": "",
+    "secretKey": "",
+    "services": [
+        {
+            "id": "99586600-9497-11e8-a2d5-e372cf809e40",
+            "name": "BotChat",
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages"
+        }
+    ]
+}

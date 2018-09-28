@@ -1,0 +1,66 @@
+﻿@model AdminPanel.ViewModels.AdminViewModels.TestSchemeViewModels.CreateTestSchemeVM
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Test scheme creation</h4>
+        <hr />
+        <div>
+            @Html.EditorFor(m=> Model.testSchemeName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name of the template"} })
+            <br />
+            @Html.EditorFor(m=>Model.testSchemeDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "Description of the template", style = "width: 50%" } })
+            <br />
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    Question ID
+                </th>
+                <th>
+                    Text
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Is question included?
+                </th>
+            </tr>
+
+            @for(int i=0;i<Model.questionList.Count();i++)
+            {
+                <tr>
+                    @Html.HiddenFor(modelItem => Model.questionList[i].questionID)
+                    @Html.HiddenFor(modelItem => Model.questionList[i].Text)
+                    @Html.HiddenFor(modelItem => Model.questionList[i].Type)
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.questionList[i].questionID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.questionList[i].Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.questionList[i].Type)
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(modelItem => Model.questionList[i].isChecked)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Admin")
+</div>

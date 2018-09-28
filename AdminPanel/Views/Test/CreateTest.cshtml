@@ -1,0 +1,78 @@
+﻿@model AdminPanel.ViewModels.AdminViewModels.TestViewModels.CreateTestVM
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Test creation</h4>
+    <hr />
+    <div class="col-md-10">
+        @Html.EditorFor(m => Model.userName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Deadline, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Deadline, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Deadline, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div>
+        @Html.Label("Time limit", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.timeLimit)
+            @Html.ValidationMessageFor(model => model.timeLimit)
+        </div>
+    </div>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                Template name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Mark preferred template
+            </th>
+        </tr>
+
+        @for(int i=0;i<Model.schemaList.Count;i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.schemaList[i].templateName)
+                    @Html.DisplayFor(modelItem => Model.schemaList[i].templateName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.schemaList[i].templateDescription)
+                    @Html.DisplayFor(modelItem => Model.schemaList[i].templateDescription)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.schemaList[i].isChecked)
+                    @Html.RadioButtonFor(modelItem => Model.selectedTemplateID, Model.schemaList[i].templateID)
+                </td>
+            </tr>
+        }
+
+
+
+    </table>
+
+    <br />
+                        <br />
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index","Admin")
+</div>
